@@ -36,21 +36,6 @@ function preparePath($el) {
     $el.css("stroke-dashoffset", lineLenght);
 }
 
-// let $zigzag = $("path#zigzag");
-
-// preparePath($zigzag);
-
-// let zigzagAnimation = new TimelineMax()
-// .add( TweenMax.to( $zigzag, 2, {strokeDashoffset: 0, ease:Linear.easeNone} ) )
-
-// new ScrollMagic.Scene({
-//     duration: 300,
-//     triggerHook: 0.5,
-// })
-
-// .setTween(zigzagAnimation)
-// .addTo(controler)
-
 //Menu blur background
 new ScrollMagic.Scene({
     triggerElement: "#all-buttons",
@@ -130,18 +115,34 @@ new ScrollMagic.Scene({
 
 //blog Pin
 
+let $smallBlogElHeight = $(".blog--element_small").innerHeight();
+console.log( $smallBlogElHeight );
+
 for(let i=0; i<=3; i++) {
 
 new ScrollMagic.Scene({
     triggerElement: "#pin1",
     triggerHook: 0.2,
-    duration: "50%",
+    duration: $smallBlogElHeight/1.8,
     offset: 50,
 })
 .setPin("#pin" + [i])
 .addTo(controler);
 
 }
+
+//Stat animation
+let statAnimation = new TimelineMax()
+.to("#stat", 1, {strokeDasharray: "calc(75 * 31.42 / 100) 31.42"})
+
+new ScrollMagic.Scene({
+    triggerElement: "#podcast",
+    triggerHook: 0,
+    duration: "50%",
+    offset: 300,
+})
+.setTween(statAnimation)
+.addTo(controler);
 
 
 
